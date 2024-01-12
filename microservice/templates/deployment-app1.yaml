@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-app1
+spec:
+  replicas: {{ .Values.app1.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-app1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-app1
+    spec:
+      containers:
+      - name: app1
+        image: {{ .Values.app1.image }}
+        ports:
+        - containerPort: {{ .Values.app1.port }}
+        env:
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-app-data
+              key: host.redis

@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+  name: "{{ .Release.Name}}-service"
+  labels:
+    {{- include "my.labels" . | indent 4 }}
+spec:
+  selector:
+    {{- include "my.selector.matchLabels" . | indent 4  }}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: {{ .Values.service.nodePort }}
+  type: {{ .Values.service.type }}

@@ -1,0 +1,17 @@
+---
+{{- define "my.selector.matchLabels" }}
+app: "{{ .Values.app.name }}"
+{{- end }}
+{{- define "my.labels" }}
+generator: helm
+date: {{ now | htmlDate }}
+{{- include "my.selector.matchLabels" .}}
+{{- end }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+  labels:
+  {{- include "my.labels" . | indent 4 }}
+  data:
+    myvalue: "Hello Word!"

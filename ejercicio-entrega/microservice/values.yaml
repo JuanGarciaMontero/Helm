@@ -1,0 +1,19 @@
+---
+app:
+  name: nginx
+replicaCount: 1
+service:
+  nodePort: 30080
+  type: NodePort
+app1:
+  replicas: 3
+  image: juangarciamontero/app1:0.1.0
+  port: 5000
+app2:
+  replicas: 3
+  image: juangarciamontero/app2:0.1.0
+  port: 5000
+redis:
+  replicas: 1
+  image: redis:latest
+  port: 65535

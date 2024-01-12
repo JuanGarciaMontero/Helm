@@ -1,0 +1,41 @@
+# values.yaml
+
+replicaCount: 1
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: ""
+
+# ... (other configurations)
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  # ... (ingress configurations)
+
+resources: {}
+  # ... (resource configurations)
+
+autoscaling:
+  enabled: false
+  # ... (autoscaling configurations)
+
+volumes: []
+volumeMounts: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Redis configurations
+redis:
+  enabled: true
+  replicas: 1
+  image: redis:latest
+  port: 65535
