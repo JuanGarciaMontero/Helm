@@ -1,5 +1,5 @@
 
-Descargo el repo bitnami que indica el profesor donde hay un wordpress con base de datos
+***Descargo el repo bitnami que indica el profesor donde hay un wordpress con base de datos
 
 helm repo add bitnami https://charts.bitnami.com/bitnami
 
